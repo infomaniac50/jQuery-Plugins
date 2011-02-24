@@ -4,12 +4,21 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <style type="text/css">
-        div
+        .basecontainer div
         {
             margin: 4px;
+            margin-left: 25px;
             font-size: 16px;
             font-weight: bolder;
             cursor: pointer;
+        }
+        .basecontainer div.container
+        {
+            border:1px solid black;
+        }
+        .item
+        {
+            background: blue;
         }
         .highlight
         {
@@ -21,7 +30,7 @@
     <script type='text/javascript'>
         $(function () {
             $('#btnRunTest').click(function () {
-                var stuff = $('.item').isChildOf('.container');
+                var stuff = $('.item').isChildOf('.itemcontainer');
 
                 stuff.toggleClass("highlight");
             });
@@ -29,27 +38,28 @@
     </script>
 </head>
 <body>
-    <div class='item'>
-        Not inside of container
-    </div>
-    <div class='container'>
+    <div class='basecontainer'>
         <div class='item'>
-            An item in a container
+            An item not in a container
         </div>
-    </div>
-    <div class='container'>
-        <div class='item'>
-            An item in a different container
-        </div>
-        <div class='innercontainer'>
-            <div>
-                A container in a container
-            </div>
+        <div class='itemcontainer container'>
             <div class='item'>
-                An item in a container in a container
+                An item in a container
+            </div>
+        </div>
+        <div class='itemcontainer container'>
+            <div class='item'>
+                An item in a different container
+            </div>
+            <div class='innercontainer container'>
+                A container in a container
+                <div class='item'>
+                    An item in a container in a container
+                </div>
             </div>
         </div>
     </div>
-    <button id='btnRunTest'>Test Code</button>
+    <button id='btnRunTest'>
+        Test Code</button>
 </body>
 </html>
